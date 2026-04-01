@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="script.js" defer></script>
+  <title>Planer posiłków</title>
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/board.css">
+  <link rel="stylesheet" href="styles/modal.css">
+</head>
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div class="title-wrap">
+        <h1>Planer posiłków</h1>
+        <p>Tygodniowy board od poniedziałku do niedzieli. Dane zapisują się w localStorage.</p>
+      </div>
+      <div class="topbar-actions">
+        <button class="ghost-btn" id="addQuickBtn">+ Dodaj posiłek</button>
+        <button class="danger-btn" id="clearWeekBtn">Wyczyść tydzień</button>
+      </div>
+    </div>
+
+    <div class="board" id="board"></div>
+  </div>
+
+  <div class="modal-backdrop" id="mealModalBackdrop" aria-hidden="true">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal-header">
+      <h3 id="modalTitle">Dodaj posiłek</h3>
+    </div>
+    <form id="mealForm" class="meal-form">
+      <div class="modal-body">
+        <label>
+          Dzień tygodnia
+          <select id="daySelect" required></select>
+        </label>
+
+        <label>
+          Nazwa posiłku
+          <input id="mealTitle" type="text" maxlength="100" placeholder="Np. Owsianka z borówkami" required />
+        </label>
+
+        <label>
+          Typ posiłku
+          <select id="mealType">
+            <option value="">Brak</option>
+            <option>Śniadanie</option>
+            <option>II śniadanie</option>
+            <option>Obiad</option>
+            <option>Podwieczorek</option>
+            <option>Kolacja</option>
+            <option>Przekąska</option>
+          </select>
+        </label>
+
+        <label>
+          Notatki
+          <textarea id="mealNotes" maxlength="500" placeholder="Np. składniki, kcal, lista zakupów, przygotować dzień wcześniej..."></textarea>
+        </label>
+        <div class="helper-text">Możesz dodawać, edytować i usuwać posiłki. Wszystko zapisuje się automatycznie.</div>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="ghost-btn" id="cancelBtn">Anuluj</button>
+        <button type="submit" class="primary-btn" id="saveBtn">Zapisz</button>
+      </div>
+    </form>
+  </div>
+</div>
+</body>
+</html>
